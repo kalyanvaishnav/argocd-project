@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: website
+  name: website
+  namespace: default
+spec:
+  replicas: 4
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: website
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+      - image: kvaishnav1/web
+        imagePullPolicy: Always
+        name: web
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: testing
+  namespace: default
+  labels:
+    app: testing
+  spec:
+    containers:
+    - name: testing
+      image: nginx
